@@ -16,13 +16,16 @@ module.exports = define
  * `this` object.
  */
 
-function define (/* initial, [context] */) {
-  var initial = arguments[0]
-  var context = arguments[1]
+function define (options) {
+  options = options || {}
+  var initial = options.init
+  var context = options.self
+  var readonly = options.readonly
 
   function accessor (input) {
     // setter
     if (arguments.length) {
+      if (readonly) throw new TypeError('property is readonly; using a setter is not allowed!')
       accessor.value = input
       return this
     }

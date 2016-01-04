@@ -38,9 +38,21 @@ function scanner (string) {
  */
 
 function Scanner (string) {
-  this.codepoints = accessor(decode(string), this)
-  this.index = accessor(-1, this)
-  this.string = accessor(string, this)
+  this.codepoints = accessor({
+    self: this,
+    init: decode(string),
+    readonly: true
+  })
+
+  this.index = accessor({
+    self: this,
+    init: -1
+  })
+
+  this.string = accessor({
+    self: this,
+    init: string
+  })
 }
 
 /**
