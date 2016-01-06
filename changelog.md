@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file (keepachangelog.com).
 
+## 0.3.2 - 2016-01-05
+### Changed
+- Pulled in npm package `function-accessor` in place of local module.
+
 ## 0.3.1 - 2016-01-05
 ### Changed
 - API documentation updates.

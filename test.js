@@ -26,7 +26,7 @@ var codepoints = [ 72, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100, 33 ]
 test('.codepoints()', function (t) {
   var scanner = scan(string)
   t.deepEqual(scanner.codepoints(), codepoints, "String's decoded code points")
-  t.throws(scanner.codepoints.bind(null, []), TypeError, 'Throws TypeError when attempting to set readonly attribute')
+  t.throws(scanner.codepoints.bind(null, []), RangeError, 'Throws RangeError when attempting to set readonly attribute')
   t.end()
 })
 
@@ -34,7 +34,7 @@ test('.length()', function (t) {
   var scanner = scan(string)
   t.equal(scanner.length(), 12, 'String length corresponds to number of characters')
   var shouldThrowError = scanner.length.bind(null, 100)
-  t.throws(shouldThrowError, TypeError, 'Throws TypeError when attempting to set length')
+  t.throws(shouldThrowError, RangeError, 'Throws RangeError when attempting to set length')
   t.end()
 })
 
@@ -42,7 +42,7 @@ test('.string()', function (t) {
   var scanner = scan(string)
   t.equal(scanner.string(), string, 'Returns string when called as getter')
   var shouldThrowError = scanner.string.bind(null, 'not the original string')
-  t.throws(shouldThrowError, TypeError, 'Throws TypeError when attempting to set string')
+  t.throws(shouldThrowError, RangeError, 'Throws RangeError when attempting to set string')
   t.end()
 })
 

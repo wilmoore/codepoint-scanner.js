@@ -6,7 +6,9 @@
   "bugs": {
     "url": "https://github.com/wilmoore/codepoint-scanner.js/issues"
   },
-  "dependencies": {},
+  "dependencies": {
+    "function-accessor": "^0.1.0"
+  },
   "devDependencies": {
     "dependency-check": "^2.4.0",
     "fixpack": "^2.2.0",

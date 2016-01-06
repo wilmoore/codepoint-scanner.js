@@ -4,7 +4,7 @@
  * imports.
  */
 
-var accessor = require('./accesssor')
+var accessor = require('function-accessor')
 var decode = require('punycode').ucs2.decode
 
 /*!
