@@ -57,10 +57,15 @@ test('.index()', function (t) {
 })
 
 test('eos()', function (t) {
-  var scanner = scan(string)
+  var scanner
+
+  scanner = scan(string)
   t.equal(scanner.eos(), false, 'Index is not at end of string')
   scanner.index(scanner.length() - 1)
   t.equal(scanner.eos(), true, 'Index is at end of string')
+
+  scanner = scan('') // empty string
+  t.equal(scanner.eos(), true, 'Index is automatically at end of string when string is empty')
   t.end()
 })
 

@@ -93,7 +93,11 @@ Scanner.prototype.bos = function bos () {
  */
 
 Scanner.prototype.eos = function eos () {
-  return this.index() === this.length() - 1
+  if (this.length()) {
+    return this.index() === this.length() - 1
+  }
+
+  return true
 }
 
 /**
