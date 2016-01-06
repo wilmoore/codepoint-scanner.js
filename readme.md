@@ -56,11 +56,57 @@ scanner.index()
 // => 1
 ```
 
+###### scanner.bos()
+
+```js
+scanner.bos()
+// => true
+
+scanner.next()
+// => 72
+
+scanner.bos()
+// => false
+```
+
+###### scanner.reset()
+
+```js
+scanner.bos()
+// => false
+
+scanner.reset().bos()
+// => true
+```
+
+###### scanner.eos()
+
+```js
+scanner.eos()
+// => false
+
+scanner.index(scanner.length - 1).eos()
+// => true
+```
+
+###### scanner.$()
+
+```js
+scanner.eos()
+// => false
+
+scanner.$().eos()
+// => true
+```
+
 ###### scanner.peek()
 
 ```js
 scanner.index()
-// => 1
+// => 0
+
+scanner.peek()
+// => [ 72 ]
 
 scanner.peek(5)
 // => [ 32 ]
@@ -70,6 +116,16 @@ scanner.peek(5, 7)
 
 scanner.index()
 // => 1
+```
+
+###### scanner.at()
+
+```js
+scanner.index()
+// => 0
+
+scanner.at(5)
+// => 32
 ```
 
 ## Contributing

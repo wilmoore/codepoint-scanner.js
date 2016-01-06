@@ -19,6 +19,7 @@ module.exports = define
 function define (options) {
   options = options || {}
   var initial = options.init
+  var check = options.check
   var context = options.self
   var readonly = options.readonly
 
@@ -26,6 +27,7 @@ function define (options) {
     // setter
     if (arguments.length) {
       if (readonly) throw new TypeError('property is readonly; using a setter is not allowed!')
+      if (check && !check.call(this, input)) throw new RangeError('value is not in the set or range of allowed values')
       accessor.value = input
       return this
     }

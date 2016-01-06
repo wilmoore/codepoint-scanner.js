@@ -39,20 +39,83 @@ function scanner (string) {
 
 function Scanner (string) {
   this.codepoints = accessor({
-    self: this,
     init: decode(string),
-    readonly: true
+    readonly: true,
+    self: this
   })
 
   this.index = accessor({
-    self: this,
-    init: -1
+    init: 0,
+    check: isValidIndex,
+    self: this
+  })
+
+  this.length = accessor({
+    init: this.codepoints().length,
+    readonly: true,
+    self: this
   })
 
   this.string = accessor({
-    self: this,
-    init: string
+    init: string,
+    readonly: true,
+    self: this
   })
+}
+
+/**
+ * Whether given index is valid.
+ *
+ * @return {Boolean}
+ * Whether given index is valid.
+ */
+
+function isValidIndex (index) {
+  return index >= 0 && index <= (this.length() - 1)
+}
+
+/**
+ * Whether index is at beginning of string.
+ *
+ * @return {Boolean}
+ * Whether index is at beginning of string.
+ */
+
+Scanner.prototype.bos = function bos () {
+  return this.index() === 0
+}
+
+/**
+ * Whether index is at end of string.
+ *
+ * @return {Boolean}
+ * Whether index is at end of string.
+ */
+
+Scanner.prototype.eos = function eos () {
+  return this.index() === this.length() - 1
+}
+
+/**
+ * Change index to last character of the string.
+ *
+ * @return {Scanner}
+ * Scanner Instance.
+ */
+
+Scanner.prototype.$ = function $ () {
+  return this.index(this.length() - 1)
+}
+
+/**
+ * Change index to first character of the string.
+ *
+ * @return {Scanner}
+ * Scanner Instance.
+ */
+
+Scanner.prototype.reset = function reset () {
+  return this.index(0)
 }
 
 /**
@@ -63,12 +126,11 @@ function Scanner (string) {
  */
 
 Scanner.prototype.next = function next () {
-  this.index(this.index() + 1)
-  return this.codepoints()[this.index()]
+  return this.index(this.index() + 1).codepoints()[this.index()]
 }
 
 /**
- * Return code point at given index or between start (inclusive) and end (exclusive) indexes without moving index.
+ * Return range of code points at index or between start (inclusive) and end (exclusive) indexes without moving index.
  *
  * @param {Number} start
  * Starting index.
@@ -76,10 +138,25 @@ Scanner.prototype.next = function next () {
  * @param {Number} [end]
  * Ending index.
  *
- * @return {Scanner}
- * Codepoint at new index.
+ * @return {Array}
+ * Code points.
  */
 
 Scanner.prototype.peek = function peek (start, end) {
+  start = arguments.length ? start : this.index()
   return this.codepoints().slice(start, 1 in arguments ? end : start + 1)
+}
+
+/**
+ * Return code point at given index without moving index.
+ *
+ * @param {Number} index
+ * Index.
+ *
+ * @return {Number}
+ * Code point.
+ */
+
+Scanner.prototype.at = function at (index) {
+  return this.peek(index)[0]
 }

@@ -25,7 +25,14 @@
     "lexicalanalysis",
     "lexicalscanning",
     "scanner",
-    "scanning"
+    "scanning",
+    "ucs",
+    "ucs-2",
+    "ucs2",
+    "unicode",
+    "utf",
+    "utf-16",
+    "utf16"
   ],
   "license": "MIT",
   "main": "index.js",
