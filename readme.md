@@ -17,7 +17,6 @@ npm install codepoint-scanner --save
 
 ```js
 var scan = require('codepoint-scanner')
-var scanner = scan('Hello world!')
 ```
 
 ## API
@@ -25,6 +24,8 @@ var scanner = scan('Hello world!')
 ###### scanner.string()
 
 ```js
+var scanner = scan('Hello world!')
+
 scanner.string()
 // => 'Hello world!'
 ```
@@ -32,6 +33,8 @@ scanner.string()
 ###### scanner.codepoints()
 
 ```js
+var scanner = scan('Hello world!')
+
 scanner.codepoints()
 // => [ 72, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100, 33 ]
 ```
@@ -39,31 +42,37 @@ scanner.codepoints()
 ###### scanner.index()
 
 ```js
+var scanner = scan('Hello world!')
+
 scanner.index()
-// => -1
+// => 0
 ```
 
 ###### scanner.next()
 
 ```js
-scanner.next()
-// => 72
+var scanner = scan('Hello world!')
 
 scanner.next()
 // => 101
 
+scanner.next()
+// => 108
+
 scanner.index()
-// => 1
+// => 2
 ```
 
 ###### scanner.bos()
 
 ```js
+var scanner = scan('Hello world!')
+
 scanner.bos()
 // => true
 
 scanner.next()
-// => 72
+// => 101
 
 scanner.bos()
 // => false
@@ -72,8 +81,10 @@ scanner.bos()
 ###### scanner.reset()
 
 ```js
-scanner.bos()
-// => false
+var scanner = scan('Hello world!')
+
+scanner.next()
+// => 101
 
 scanner.reset().bos()
 // => true
@@ -82,16 +93,20 @@ scanner.reset().bos()
 ###### scanner.eos()
 
 ```js
+var scanner = scan('Hello world!')
+
 scanner.eos()
 // => false
 
-scanner.index(scanner.length - 1).eos()
+scanner.index(scanner.length() - 1).eos()
 // => true
 ```
 
 ###### scanner.$()
 
 ```js
+var scanner = scan('Hello world!')
+
 scanner.eos()
 // => false
 
@@ -102,6 +117,8 @@ scanner.$().eos()
 ###### scanner.peek()
 
 ```js
+var scanner = scan('Hello world!')
+
 scanner.index()
 // => 0
 
@@ -115,12 +132,14 @@ scanner.peek(5, 7)
 // => [ 32, 119 ]
 
 scanner.index()
-// => 1
+// => 0
 ```
 
 ###### scanner.at()
 
 ```js
+var scanner = scan('Hello world!')
+
 scanner.index()
 // => 0
 
